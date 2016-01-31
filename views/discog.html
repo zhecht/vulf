@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+	
+	<div class="album">
+		<h2>Mit Peck ('11)</h2>
+		{% for m in mitpeck %}
+			<p>{{m}}</p>
+		{% endfor %}
+	</div>
+
+	<div id="thrill" class="album">
+		<h2>Thrill of the Arts ('15)</h2>
+		{% for t in tota %}
+			<p>{{t}}</p>
+		{% endfor %}
+	</div>
+
+	<div class="album">
+		<h2>Vollmilch ('12)</h2>
+		{% for v in vollmilch %}
+			<p>{{v}}</p>
+		{% endfor %}
+	</div>
+
+	<div class="album">
+		<h2>My First Car ('13)</h2>
+		{% for m in mfc %}
+			<p>{{m}}</p>
+		{% endfor %}
+	</div>
+	
+	<div id="fugue" class="album">
+		<h2>Fugue State ('14)</h2>
+		{% for f in fugue %}
+			<p>{{f}}</p>
+		{% endfor %}
+	</div>
+
+{% endblock %}

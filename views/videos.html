@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+	
+	<div class="videos" id="albumVideos">
+		<h2>Albums</h2>
+		{% for a in albums %}
+			<span><a target="_blank" href="{{a.link}}">{{a.album}}</a></span>	
+		{% endfor %}
+	</div>
+	<div class="videos" id="coverVideos">
+		<h2>Cover</h2>
+		{% for c in covers %}
+			<span><a target="_blank" href="{{c.link}}">{{c.cover}}</a></span>
+		{% endfor %}
+	</div>
+	<div class="videos" id="liveAntVideos">
+		<h2>Live Antwaun</h2>
+		{% for a in ant %}
+			<span><a target="_blank" href="{{a.link}}">{{a.song}}</a></span>
+		{% endfor %}
+	</div>
+	<div class="videos" id="liveJoeyVideos">
+		<h2>Live Dosik</h2>
+		{% for j in joey %}
+			<span><a target="_blank" href="{{j.link}}">{{j.song}}</a></span>
+		{% endfor %}
+		<h2 id="blakeHeader">Live Blake</h2>
+		{% for b in blake %}
+			<span><a target="_blank" href="{{b.link}}">{{b.song}}</a></span>
+		{% endfor %}
+	</div>
+{% endblock %}

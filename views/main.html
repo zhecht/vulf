@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+	
+	<div id="facebook">
+		<h3>FB Feed</h3>
+
+		{% for post in posts %}
+			<div class="post">
+				<div class="postImg">
+					<img src="{{post.picture}}">
+				</div>
+				<div class="postContent">
+					<a target='_blank' href="{{post.href}}">{{post.link}}</a>
+					<p class="postTime">{{post.created}}</p>
+					<p class="postDesc">{{post.message}}</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div id="songkick">
+		<h3>Upcoming Concerts</h3>
+		<button id="eventShow">Expand [+]</button>
+		{% for e in events %}
+			<div class="event" id="event{{e.index}}" hidden>
+				<p class="eventName"><strong>{{e.name}} @ {{e.venue}}</strong></p>
+				<p class="location">{{e.location}}</p>
+				<p class="eventTime">{{e.start}}</p>
+				<p class="eventWho"><strong>Performers</strong></p>
+
+				{% if e.artists %}
+					<p class="performers"> {{ e.artists|join(', ') }}</p>
+				{% endif %}
+			</div>
+		{% endfor %}
+		<script>
+
+			$('#eventShow').on('click', function (){
+				
+				var txt = $(this).text();
+				if (txt === "Expand [+]") {
+					$('.event').fadeIn(500);
+					$(this).text("Hide [-]");
+					$(this).css("border-color", "red").css("color", "red");
+				} else {
+					$('.event').fadeOut(500);
+					$(this).text("Expand [+]");
+					$(this).css("border-color", "#0000EE").css("color", "#0000EE");
+				}
+			});
+
+		</script>
+	</div>
+	
+	<div id="twitter">
+		<h3>{{user}} Twitter</h3>
+		<ul class='dropdown'>
+			<li id="top"><a style="pointer-events: none; cursor: default;" href='#'>Change Member</a>
+				<ul class="dropdown-box">
+				{% for m in members %}
+					<li><a href='/?user={{m.link}}'>{{m.name}}</a></li>
+				{% endfor %}
+				</ul>
+			</li>
+		</ul>
+
+		{% for tweet in tweets %}
+			<div class="tweet" id="tweet{{tweet.ind}}">
+				<p class="tweetTime">{{tweet.time}}</p>
+				
+			</div>
+			<script>
+			addTwitterLinks("{{tweet.url}}", "{{tweet.display_url}}", "{{tweet.text}}", "{{tweet.ind}}");
+			</script>
+			
+		{% endfor %}
+	</div>
+
+{% endblock %}
